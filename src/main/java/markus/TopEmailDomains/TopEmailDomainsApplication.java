@@ -6,10 +6,18 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class TopEmailDomainsApplication {
+
+	/**
+	 * Main method of the application.
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		SpringApplication.run(TopEmailDomainsApplication.class, args);
 		
-		
+		/**
+		 * Printing out all the domains and the number of occurrences, and the top 3 domains inside the terminal.
+		 * With print statements, I have tried to output it somewhat readable.
+		 */
 		System.out.println("------------------------------------------------------------------");
 		InputReader.readDomains();
 		HashMap<String, Integer> domains = InputReader.getDomains();
