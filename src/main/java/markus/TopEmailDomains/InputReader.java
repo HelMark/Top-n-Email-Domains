@@ -27,17 +27,14 @@ public class InputReader {
      */
     private static void updateDomains(String email) {
         String domain = email.substring(email.indexOf("@") + 1);
-        if (domains.containsKey(domain)) {
-            domains.put(domain, domains.get(domain) + 1);
-        } else {
-            domains.put(domain, 1);
-        }
+        domains.put(domain, domains.getOrDefault(domain, 0) + 1);
     }
 
     /**
      * Reads the file and updates the domains HashMap.
      */
     public static void readDomains() {
+        domains = new HashMap<String, Integer>();
         try{
             File file = new File(fileLocation);
             BufferedReader br = new BufferedReader(new FileReader(file));

@@ -3,23 +3,23 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
+	<groupId>markus</groupId>
+	<artifactId>TopEmailDomains</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>TopEmailDomains</name>
+	<description>Java program that checks number of times a particular domain appears in a list of Emails.</description>
+
+	<properties>
+		<java.version>17</java.version>
+	</properties>
+
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.1.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	
-	<groupId>markus</groupId>
-	<artifactId>TopEmailDomains</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>TopEmailDomains</name>
-	<description>Java program that checks number of times a particular domain appears in a list of Emails.</description>
-	
-	<properties>
-		<java.version>17</java.version>
-	</properties>
-	
+			
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -41,6 +41,17 @@
 			<artifactId>junit-jupiter</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-controls</artifactId>
+			<version>17</version>
+		</dependency>
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-fxml</artifactId>
+			<version>17</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -48,6 +59,23 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.openjfx</groupId>
+				<artifactId>javafx-maven-plugin</artifactId>
+				<version>0.0.8</version>
+				<configuration>
+					<mainClass>markus.TopEmailDomains.TopEmailDomainsApplication</mainClass>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>3.1.0</version>
+				<configuration>
+					<mainClass>markus.TopEmailDomains.generateInputData</mainClass>
+					<classpathScope>test</classpathScope>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
