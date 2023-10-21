@@ -2,57 +2,29 @@ package markus.TopEmailDomains;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-
 public class InputReader {
 
-    private static HashMap<String, Integer> domains = new HashMap<String, Integer>();
+    private HashMap<String, Integer> domains = new HashMap<String, Integer>();
     private static String fileLocation = "input.txt";
 
-    /** 
-     * Private constructor to prevent instantiation. 
+    /**
+     * Private constructor to prevent instantiation.
      */
-    private InputReader() {
+    public InputReader() {
     }
 
     /**
-     * Updates the domains HashMap with the domain of the email.
+     * Sets the file loacation for EmailDomainCounter.
      * 
-     * @param email the email to be processed.
-     */
-    private static void updateDomains(String email) {
-        String domain = email.substring(email.indexOf("@") + 1);
-        domains.put(domain, domains.getOrDefault(domain, 0) + 1);
-    }
-
-    /**
-     * Reads the file and updates the domains HashMap.
-     */
-    public static void readDomains() {
-        domains = new HashMap<String, Integer>();
-        try{
-            File file = new File(fileLocation);
-            BufferedReader br = new BufferedReader(new FileReader(file));
-            String line = null;
-
-            while ((line = br.readLine()) != null) {
-                InputReader.updateDomains(line);
-            }
-
-            br.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Ses the file loacation for EmailDomainCounter.
-     * @param fileLocation
+     * @param fileLocation the file location.
      */
     public static void setFileLocation(String fileLocation) {
         InputReader.fileLocation = fileLocation;
@@ -68,12 +40,31 @@ public class InputReader {
     }
 
     /**
-     * Gets the domains HashMap.
+     * Reads the file and counts the domains.
      * 
      * @return the domains HashMap.
      */
-    public static HashMap<String, Integer> getDomains() {
-        return domains;
+    public HashMap<String, Integer> readDomains() {
+        try {
+            File file = new File(fileLocation);
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String line = null;
+
+            while ((line = br.readLine()) != null) {
+                String domain = line.substring(line.indexOf("@") + 1);
+                domains.put(domain, domains.getOrDefault(domain, 0) + 1);
+            }
+            br.close();
+
+            return domains;
+        } catch (FileNotFoundException e) {
+            System.err.println("File not found!");
+            e.printStackTrace();
+        } catch (IOException e) {
+            System.err.println("Error reading the file!");
+            e.printStackTrace();
+        }
+        return null;
     }
 
     /**
@@ -81,15 +72,16 @@ public class InputReader {
      * 
      * @return the sorted domains HashMap.
      */
-    public static HashMap<String, Integer> sortDomains() {
+    public HashMap<String, Integer> sortDomains() {
+        this.readDomains();
+
         HashMap<String, Integer> sortedDomains = domains.entrySet()
-                                                        .stream()
-                                                        .sorted((i1, i2) 
-                                                            -> i2.getValue().compareTo(i1.getValue()))
-                                                        .collect(Collectors.toMap(
-                                                            Map.Entry::getKey, 
-                                                            Map.Entry::getValue, 
-                                                            (e1, e2) -> e1, LinkedHashMap::new));
+                .stream()
+                .sorted((i1, i2) -> i2.getValue().compareTo(i1.getValue()))
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        Map.Entry::getValue,
+                        (e1, e2) -> e1, LinkedHashMap::new));
         return sortedDomains;
     }
 }
