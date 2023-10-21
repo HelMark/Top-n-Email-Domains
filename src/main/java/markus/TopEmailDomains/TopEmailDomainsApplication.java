@@ -8,36 +8,30 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class TopEmailDomainsApplication {
 
 	/**
-	 * Main method of the application.
-	 * @param args
+	 * Main method of the application. Runs the program and outputs in the terminal
+	 * all domains - nuber of pairs, sorted!
+	 * 
+	 * @param args not used.
 	 */
 	public static void main(String[] args) {
 		SpringApplication.run(TopEmailDomainsApplication.class, args);
-		
+
 		/**
-		 * Printing out all the domains and the number of occurrences, and the top 3 domains inside the terminal.
+		 * Printing out all the domains in descending order with number of occurrences
+		 * inside the terminal.
 		 * With print statements, I have tried to output it somewhat readable.
 		 */
 		System.out.println("------------------------------------------------------------------");
-		InputReader.readDomains();
-		HashMap<String, Integer> domains = InputReader.getDomains();
-		System.out.println("Domains:");
-		System.out.println(domains);
+		InputReader inputReader = new InputReader();
 
-		System.out.println("------------------------------------------------------------------");
-		HashMap<String, Integer> sortedDomains = InputReader.sortDomains();
-		if (sortedDomains.size() < 3) {
-			int mapZize = sortedDomains.size();
-			System.out.println("Top " + mapZize + ":");
-			for (int i = 0; i < mapZize; i++) {
-				System.out.println((i + 1) + ". " + sortedDomains.keySet().toArray()[i] + ": " + sortedDomains.values().toArray()[i]);
-			}
-		} else {
-			System.out.println("Top 3 domains:");
-			for (int i = 0; i < 3; i++) {
-				System.out.println((i + 1) + ". " + sortedDomains.keySet().toArray()[i] + ": " + sortedDomains.values().toArray()[i]);
-			}
+		HashMap<String, Integer> domains = inputReader.sortDomains();
+		System.out.println("Domains in descending order (Domain : Number of occurrences):");
+		int i = 0;
+		for (String domain : domains.keySet()) {
+			i++;
+			System.out.println(" " + i + " " + domain + " : " + domains.get(domain));
 		}
+
 		System.out.println("------------------------------------------------------------------");
 	}
 }

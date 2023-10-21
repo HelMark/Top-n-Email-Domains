@@ -1,15 +1,15 @@
 # Top-n-Email-Domains
 
-This Java program reads from an input.txt file, checks the number of times a particular domain appears in the input.txt file, and outputs the data to the terminal. It also writes the data to an output.txt file and provides a simple UI interface. The input.txt file contains one email per line.
+This Java program reads from an input.txt file, checks the number of times a particular domain appears in the input.txt file, and outputs the data to the terminal. The input.txt file contains one email per line.
 
 #### Overview 
 
-I chose to create a Maven project with the Spring framework due to its versatility. The program is written in Java, and the project's structure was generated using the. The program is written in Java, and the project's structure was generated using the [Spring initilizr](https://start.spring.io/).
+I chose to create a Maven project with the Spring framework due to its versatility. The program is written in Java, and the project's structure was generated using the [Spring initilizr](https://start.spring.io/).
 
-The main codebase is located in the [src/main/java/markus/TopEmailDomains](src/main/java/markus/TopEmailDomains). directory. You can launch the program using [TopEmailDomainsApplication.java](src/main/java/markus/TopEmailDomains/TopEmailDomainsApplication.java) or Maven commands.
+The main codebase is located in the [src/main/java/markus/TopEmailDomains](src/main/java/markus/TopEmailDomains) directory. You can launch the program using [TopEmailDomainsApplication.java](src/main/java/markus/TopEmailDomains/TopEmailDomainsApplication.java) or Maven commands.
 
 #### Building and Running the program
-The program uses Maven for building and running. To get started, ensure you are in the root directory, which is the same directory as this README.md and pom.xml file.
+The program uses Maven for building and running. To get started, ensure you are in the root directory, which is the same directory as this README.md and the pom.xml file.
 
 To build the program, run the following command: `mvn install`. This will build the project and execute all tests. Hopefully, all the builds and tests are successful.
 
