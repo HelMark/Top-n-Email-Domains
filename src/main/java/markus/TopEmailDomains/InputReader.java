@@ -68,7 +68,8 @@ public class InputReader {
     }
 
     /**
-     * Sorts the domains HashMap by value.
+     * Sorts the domains HashMap by value. If value is equal it sorts the strings in
+     * descending alphabetical order.
      * 
      * @return the sorted domains HashMap.
      */
@@ -77,7 +78,14 @@ public class InputReader {
 
         HashMap<String, Integer> sortedDomains = domains.entrySet()
                 .stream()
-                .sorted((i1, i2) -> i2.getValue().compareTo(i1.getValue()))
+                .sorted((i1, i2) -> {
+                    int compareValue = i2.getValue().compareTo(i1.getValue());
+                    if (compareValue != 0) {
+                        return compareValue;
+                    } else {
+                        return i1.getKey().compareTo(i2.getKey());
+                    }
+                })
                 .collect(Collectors.toMap(
                         Map.Entry::getKey,
                         Map.Entry::getValue,
