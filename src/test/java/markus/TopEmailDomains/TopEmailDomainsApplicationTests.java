@@ -63,6 +63,10 @@ class TopEmailDomainsApplicationTests {
 		List<Integer> l = sortedDomains.values().stream().toList();
 		for (int i = 0; i < l.size() - 1; i++) {
 			assertTrue(l.get(i) >= l.get(i + 1));
+			if (l.get(i) == l.get(i + 1)) {
+				assertTrue(sortedDomains.keySet().toArray()[i].toString()
+						.compareTo(sortedDomains.keySet().toArray()[i + 1].toString()) < 0);
+			}
 		}
 	}
 
